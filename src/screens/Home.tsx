@@ -3,7 +3,11 @@ import { View, Text } from 'react-native';
 import { Header } from '../components/Header';
 import { HabitDay, DAY_SIZE } from '../components/HabitDay';
 
+import { generateRangeDatesFromYearStart } from '../utils/generate-range-between-dates';
+
 const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+const datesFromYearStart = generateRangeDatesFromYearStart();
 
 export function Home() {
   return (
@@ -20,7 +24,11 @@ export function Home() {
           </Text>
         ))}
       </View>
-      <HabitDay />
+      <View className="flex-row flex-wrap">
+        {datesFromYearStart.map((date) => (
+          <HabitDay key={date.toISOString()} />
+        ))}
+      </View>
     </View>
   );
 }
